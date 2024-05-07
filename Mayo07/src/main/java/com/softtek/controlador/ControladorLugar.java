@@ -1,9 +1,7 @@
 package com.softtek.controlador;
 
 import com.softtek.modelo.Lugar;
-import com.softtek.modelo.Producto;
 import com.softtek.servicio.ILugarServicio;
-import com.softtek.servicio.IProductoServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
