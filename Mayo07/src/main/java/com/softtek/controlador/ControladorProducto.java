@@ -16,26 +16,26 @@ public class ControladorProducto {
 
     @GetMapping
     public Collection<Producto> obtenerTarea() throws SQLException, ClassNotFoundException {
-        return servicio.obtenerTodos();
+        return servicio.consultaTodos();
     }
 
     @GetMapping("/{idProducto}")
     public Producto obtenerUno(@PathVariable int idProducto) throws SQLException, ClassNotFoundException {
-        return servicio.obtenerUno(idProducto);
+        return servicio.consultaUno(idProducto);
     }
 
     @PostMapping
-    public void crearProducto(@RequestBody Producto p) throws SQLException, ClassNotFoundException {
-        servicio.alta(p);
+    public Producto crearProducto(@RequestBody Producto p) throws SQLException, ClassNotFoundException {
+        return servicio.crear(p);
     }
 
     @PutMapping
     public Producto updateProducto(@RequestBody Producto p) throws SQLException, ClassNotFoundException {
-        return servicio.updateUno(p);
+        return servicio.modificar(p);
     }
 
     @DeleteMapping("/{idProducto}")
     void eliminarProducto(@PathVariable int idProducto) throws SQLException, ClassNotFoundException {
-        servicio.eliminarUno(idProducto);
+        servicio.eliminar(idProducto);
     }
 }
