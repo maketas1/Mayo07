@@ -34,7 +34,7 @@ public class ControladorProducto {
     }
 
     @GetMapping("/{idProducto}")
-    public ResponseEntity<ProductoDTO> obtenerUno(@PathVariable(name = "idProducto") int idProducto) throws SQLException, ClassNotFoundException {
+    public ResponseEntity<ProductoDTO> obtenerUno(@PathVariable(name = "idProducto") int idProducto) {
         Producto p1 = servicio.consultaUno(idProducto);
         if (p1 == null) {
             throw new ExcepcionesPersonalizadasNoEncontrado("PRODUCTO NO ENCONTRADO " + idProducto);
@@ -43,14 +43,14 @@ public class ControladorProducto {
     }
 
     @PostMapping
-    public ResponseEntity<ProductoDTO> crearProducto(@Valid @RequestBody ProductoDTO p) throws SQLException, ClassNotFoundException {
+    public ResponseEntity<ProductoDTO> crearProducto(@Valid @RequestBody ProductoDTO p) {
         Producto p1 = p.castProducto();
         p1 = servicio.crear(p1);
         return new ResponseEntity<>(p.castProductoADto(p1), HttpStatus.CREATED);
     }
 
     @PutMapping
-    public ResponseEntity<ProductoDTO> updateProducto(@Valid @RequestBody ProductoDTO p) throws SQLException, ClassNotFoundException {
+    public ResponseEntity<ProductoDTO> updateProducto(@Valid @RequestBody ProductoDTO p) {
         Producto p1 = servicio.consultaUno(p.getIdProducto());
         if (p1 == null) {
             throw new ExcepcionesPersonalizadasNoEncontrado("Producto no encontrado " + p.getIdProducto());
@@ -59,7 +59,7 @@ public class ControladorProducto {
     }
 
     @DeleteMapping("/{idProducto}")
-    public ResponseEntity<Void> eliminarProducto(@PathVariable(name = "idProducto") int idProducto) throws SQLException, ClassNotFoundException {
+    public ResponseEntity<Void> eliminarProducto(@PathVariable(name = "idProducto") int idProducto) {
         Producto p = servicio.consultaUno(idProducto);
         if(p == null) {
             throw new ExcepcionesPersonalizadasNoEncontrado("PRODUCTO NO ENCONTRADO " + idProducto);
